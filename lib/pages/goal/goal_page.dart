@@ -1,6 +1,9 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:flutter_calorie_counter_app/constant/app_assets.dart';
 import 'package:flutter_calorie_counter_app/constant/app_colors.dart';
+import 'package:flutter_calorie_counter_app/pages/step/steps_page.dart';
 
 class GoalPage extends StatefulWidget {
   const GoalPage({Key? key}) : super(key: key);
@@ -121,19 +124,28 @@ class _GoalPageState extends State<GoalPage> {
   }
 
   Widget _appButton(Size size) {
-    return Container(
-      width: size.width,
-      height: size.height * .07,
-      decoration: BoxDecoration(
-        color: AppColors.secondaryColor,
-        borderRadius: BorderRadius.circular(11),
-      ),
-      child: const Center(
-        child: Text(
-          "Continue",
-          style: TextStyle(
-            fontSize: 14,
-            fontWeight: FontWeight.w700,
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => StepPage(),
+            ));
+      },
+      child: Container(
+        width: size.width,
+        height: size.height * .07,
+        decoration: BoxDecoration(
+          color: AppColors.secondaryColor,
+          borderRadius: BorderRadius.circular(11),
+        ),
+        child: const Center(
+          child: Text(
+            "Continue",
+            style: TextStyle(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+            ),
           ),
         ),
       ),
