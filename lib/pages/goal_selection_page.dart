@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
+import 'package:flutter_calorie_counter_app/components/app_button.dart';
 import 'package:flutter_calorie_counter_app/constant/app_assets.dart';
 import 'package:flutter_calorie_counter_app/constant/app_colors.dart';
-import 'package:flutter_calorie_counter_app/pages/step/steps_page.dart';
+
+import 'steps/step1_page.dart';
 
 class GoalPage extends StatefulWidget {
   const GoalPage({Key? key}) : super(key: key);
@@ -29,6 +31,15 @@ class _GoalPageState extends State<GoalPage> {
     "Improve Sleep",
     "Manage Glucose",
     "Be Healthier",
+  ];
+
+  List isSelectedList = [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
   ];
 
   @override
@@ -64,7 +75,16 @@ class _GoalPageState extends State<GoalPage> {
             const SizedBox(
               height: 44,
             ),
-            _appButton(size),
+            AppButton(
+              text: "Continue",
+              onTap: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Step1Page(),
+                    ));
+              },
+            ),
             const SizedBox(
               height: 36,
             ),
@@ -97,30 +117,36 @@ class _GoalPageState extends State<GoalPage> {
       ),
       itemCount: 6,
       itemBuilder: (BuildContext context, int index) {
-        return Container(
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: index % 3 == 0
-                  ? AppColors.primaryColor
-                  : AppColors.lightGreyColor,
+        return GestureDetector(
+          onTap: () {
+            setState(() {
+              isSelectedList[index] = !isSelectedList[index];
+            });
+          },
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: isSelectedList[index]
+                    ? AppColors.primaryColor
+                    : AppColors.lightGreyColor,
+              ),
+              borderRadius: const BorderRadius.all(
+                Radius.circular(25),
+              ),
             ),
-            borderRadius: const BorderRadius.all(
-              Radius.circular(25),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SizedBox(
+                    width: size.width * .2,
+                    height: size.width * .2,
+                    child: Image.asset(itemImageNamesList[index])),
+                Text(itemNamesList[index]),
+              ],
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              SizedBox(
-                  width: size.width * .2,
-                  height: size.width * .2,
-                  child: Image.asset(itemImageNamesList[index])),
-              Text(itemNamesList[index]),
-            ],
           ),
         );
       },
     );
   }
-
 }

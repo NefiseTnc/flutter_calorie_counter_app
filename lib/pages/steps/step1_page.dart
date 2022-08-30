@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calorie_counter_app/components/app_button.dart';
+import 'package:flutter_calorie_counter_app/components/step_value_widget.dart';
+import 'package:flutter_calorie_counter_app/pages/steps/step2_page.dart';
 
 import '../../constant/app_colors.dart';
 
-class StepPage extends StatefulWidget {
-  const StepPage({Key? key}) : super(key: key);
+class Step1Page extends StatefulWidget {
+  const Step1Page({Key? key}) : super(key: key);
 
   @override
-  State<StepPage> createState() => _StepPageState();
+  State<Step1Page> createState() => _Step1PageState();
 }
 
-class _StepPageState extends State<StepPage> {
+class _Step1PageState extends State<Step1Page> {
+  var selectedWeightType = 0;
   @override
   Widget build(BuildContext context) {
     var size = MediaQuery.of(context).size;
@@ -24,7 +28,7 @@ class _StepPageState extends State<StepPage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  "What's your latest weight",
+                  "What's your latest weight?",
                   style: TextStyle(
                     fontSize: 21,
                   ),
@@ -49,25 +53,8 @@ class _StepPageState extends State<StepPage> {
                 const SizedBox(
                   height: 12,
                 ),
-                Stack(
-                  children: [
-                    Container(
-                      width: size.width,
-                      height: size.height * .01,
-                      decoration: BoxDecoration(
-                        color: AppColors.lightGreyColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
-                    Container(
-                      width: size.width * .25,
-                      height: size.height * .01,
-                      decoration: BoxDecoration(
-                        color: AppColors.primaryColor,
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                    ),
-                  ],
+                const StepValueWidget(
+                  stepValue: .25,
                 ),
                 const SizedBox(
                   height: 56,
@@ -95,23 +82,35 @@ class _StepPageState extends State<StepPage> {
                               child: Container(
                                   padding: const EdgeInsets.all(8),
                                   width: size.width * .125,
-                                decoration: const BoxDecoration(
-                                  borderRadius: BorderRadius.only(
-                                      topLeft: Radius.circular(25),
-                                      bottomLeft: Radius.circular(25)),
-                                  color: Colors.white,
-                                ),
-                                child: const Text("lb")),
-                            Container(
-                                padding: const EdgeInsets.all(8),
-                                width: size.width * .125,
-                                decoration: const BoxDecoration(
-                                  color: AppColors.secondaryColor,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(25),
-                                      bottomRight: Radius.circular(25)),
-                                ),
-                                child: const Text("kg")),
+                                  decoration: BoxDecoration(
+                                    borderRadius: const BorderRadius.only(
+                                        topLeft: Radius.circular(25),
+                                        bottomLeft: Radius.circular(25)),
+                                    color: selectedWeightType == 0
+                                        ? AppColors.primaryColor
+                                        : Colors.white,
+                                  ),
+                                  child: const Text("lb")),
+                            ),
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedWeightType = 1;
+                                });
+                              },
+                              child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  width: size.width * .125,
+                                  decoration: BoxDecoration(
+                                    color: selectedWeightType == 1
+                                        ? AppColors.primaryColor
+                                        : Colors.white,
+                                    borderRadius: const BorderRadius.only(
+                                        topRight: Radius.circular(25),
+                                        bottomRight: Radius.circular(25)),
+                                  ),
+                                  child: const Text("kg")),
+                            ),
                           ]),
                     ),
                   ),
@@ -141,7 +140,16 @@ class _StepPageState extends State<StepPage> {
                 const SizedBox(
                   height: 10,
                 ),
-                _appButton(size),
+                AppButton(
+                  text: "Continue",
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const Step2Page(),
+                        ));
+                  },
+                ),
                 const SizedBox(
                   height: 36,
                 ),
@@ -166,5 +174,4 @@ class _StepPageState extends State<StepPage> {
           )),
     );
   }
-
 }
