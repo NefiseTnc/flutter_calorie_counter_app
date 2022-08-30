@@ -123,32 +123,4 @@ class _GoalPageState extends State<GoalPage> {
     );
   }
 
-  Widget _appButton(Size size) {
-    return GestureDetector(
-      onTap: () {
-        Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => StepPage(),
-            ));
-      },
-      child: Container(
-        width: size.width,
-        height: size.height * .07,
-        decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(11),
-        ),
-        child: const Center(
-          child: Text(
-            "Continue",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }

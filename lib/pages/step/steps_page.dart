@@ -86,9 +86,15 @@ class _StepPageState extends State<StepPage> {
                       child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: [
-                            Container(
-                                padding: const EdgeInsets.all(8),
-                                width: size.width * .125,
+                            GestureDetector(
+                              onTap: () {
+                                setState(() {
+                                  selectedWeightType = 0;
+                                });
+                              },
+                              child: Container(
+                                  padding: const EdgeInsets.all(8),
+                                  width: size.width * .125,
                                 decoration: const BoxDecoration(
                                   borderRadius: BorderRadius.only(
                                       topLeft: Radius.circular(25),
@@ -161,26 +167,4 @@ class _StepPageState extends State<StepPage> {
     );
   }
 
-  Widget _appButton(Size size) {
-    return GestureDetector(
-      onTap: () {},
-      child: Container(
-        width: size.width,
-        height: size.height * .07,
-        decoration: BoxDecoration(
-          color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(11),
-        ),
-        child: const Center(
-          child: Text(
-            "Continue",
-            style: TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w700,
-            ),
-          ),
-        ),
-      ),
-    );
-  }
 }
