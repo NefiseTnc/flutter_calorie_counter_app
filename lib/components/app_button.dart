@@ -9,6 +9,8 @@ class AppButton extends StatelessWidget {
     this.onTap,
     this.width,
     this.height,
+    this.iconData,
+    this.radius,
     this.textFontSize,
   }) : super(key: key);
 
@@ -16,6 +18,8 @@ class AppButton extends StatelessWidget {
   final VoidCallback? onTap;
   final double? width;
   final double? height;
+  final IconData? iconData;
+  final double? radius;
   final double? textFontSize;
 
   @override
@@ -29,15 +33,22 @@ class AppButton extends StatelessWidget {
         height: height ?? size.height * .07,
         decoration: BoxDecoration(
           color: AppColors.secondaryColor,
-          borderRadius: BorderRadius.circular(11),
+          borderRadius: BorderRadius.circular(radius ?? 11),
         ),
         child: Center(
-          child: Text(
-            text,
-            style:  TextStyle(
-              fontSize: textFontSize ?? 14,
-              fontWeight: FontWeight.w700,
-            ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              iconData == null ? const SizedBox() : const Icon(Icons.add),
+              const SizedBox(width: 5),
+              Text(
+                text,
+                style: TextStyle(
+                  fontSize: textFontSize ?? 14,
+                  fontWeight: FontWeight.w700,
+                ),
+              ),
+            ],
           ),
         ),
       ),

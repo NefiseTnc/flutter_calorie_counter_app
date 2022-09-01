@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_calorie_counter_app/components/app_button.dart';
 import 'package:flutter_calorie_counter_app/components/step_value_widget.dart';
 import 'package:flutter_calorie_counter_app/constant/app_colors.dart';
-import 'package:flutter_calorie_counter_app/pages/steps/step2_page.dart';
+import 'package:flutter_calorie_counter_app/pages/goal_page.dart';
 
 class Step4Page extends StatefulWidget {
   const Step4Page({Key? key}) : super(key: key);
@@ -177,7 +177,7 @@ class _Step4PageState extends State<Step4Page> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                          builder: (context) => const Step2Page(),
+                          builder: (context) => const GoalPage(),
                         ));
                   },
                 ),

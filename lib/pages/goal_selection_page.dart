@@ -7,14 +7,14 @@ import 'package:flutter_calorie_counter_app/constant/app_colors.dart';
 
 import 'steps/step1_page.dart';
 
-class GoalPage extends StatefulWidget {
-  const GoalPage({Key? key}) : super(key: key);
+class GoalSelectionPage extends StatefulWidget {
+  const GoalSelectionPage({Key? key}) : super(key: key);
 
   @override
-  State<GoalPage> createState() => _GoalPageState();
+  State<GoalSelectionPage> createState() => _GoalSelectionPageState();
 }
 
-class _GoalPageState extends State<GoalPage> {
+class _GoalSelectionPageState extends State<GoalSelectionPage> {
   final List itemImageNamesList = [
     AppAssets.imSurface,
     AppAssets.imBicep,

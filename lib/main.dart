@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_calorie_counter_app/pages/goal_page.dart';
 import 'package:flutter_calorie_counter_app/pages/goal_selection_page.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         scaffoldBackgroundColor: Colors.white,
       ),
-      home: const GoalPage(),
+      home: const GoalSelectionPage(),
     );
   }
 }
